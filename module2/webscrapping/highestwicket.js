@@ -13,7 +13,11 @@ function cb(error, response, html) {
         //console.log(html);
         const dom= new JSDOM(html);
         const document = dom.window.document
+        let mostwicket=0;
+        let nameofhighestwicket = " ";
+
         let bowlerTable = document.querySelectorAll(".table.bowler");
+        
         for(let i=0;i<bowlersTable.length;i++){
             let rows = bowlersTable[i].querySelectorAll("tbody tr");
             for(let j=0;j<rows.length;j++){
@@ -22,8 +26,17 @@ function cb(error, response, html) {
                     let name = tds[0].textContent;
                     let wicket = tds[4].textContent;
                     console.log("Name of Bowler ---> ",name,"     Wickets ---> ",wicket);
+                    if(wicket > mostwicket){
+                        mostwicket =wicket;
+                        nameofhighestwicket - name;
+
+                    }
                 }
             }
         }
+    console.log("name of highest wicket taker :", nameofhighestwicket);
+    console.log("number of wicket taken :", mostwicket);
+    
+    
     }
 }
