@@ -1,26 +1,31 @@
-const request = require ("request");
-const jsdom = require ("jsdom");
-const {JSDOM} = require ("jsdom");
+const request = require("request");
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
 
-const link= "https://www.espncricinfo.com/series/ipl-2021-1249214/match-results";
+const link = "https://www.espncricinfo.com/series/ipl-2021-1249214/match-results";
 
-request (link , cb);
-function cb(error,response, html){
-    if (error){
+let leaderboard = [];
+
+request(link,cb);
+
+function cb(error,response,html){
+    if(error){
         console.log(error);
     }else{
         const dom = new JSDOM(html);
         const document = dom.window.document;
-        let allScorecardTags = documents.querySelectorsAll('a[data-hover="scorecard"]');
-        for(i=0; i<allScorecardTags0.length; i++){
-            let link= allScorecardTags[i].href;
+        let allScorecardTags = document.querySelectorAll('a[data-hover="Scorecard"]');
+        for(let i=0;i<allScorecardTags.length;i++){
+            let link = allScorecardTags[i].href;
             let completeLink = "https://www.espncricinfo.com"+link;
-           // console.log(completeLink);
-            request(completeLink,cb2);  
+            // console.log(completeLink);
+            request(completeLink,cb2);
         }
+        // console.log("Line 24: ",leaderboard);
     }
 }
- function cb2(error,response,html){
+
+function cb2(error,response,html){
     if(error){
         console.log(error);
     }else{
@@ -36,7 +41,40 @@ function cb(error,response, html){
                 let fours = cells[5].textContent;
                 let sixes = cells[6].textContent;
                 // console.log("Name : ",name,"Runs : ",runs,"Balls : ",balls,"Fours : ",fours,"Sixes : ",sixes);
+                processPlayer(name,runs,balls,fours,sixes);
             }
         }
+        // console.log("Line 46",leaderboard);
     }
 }
+
+function processPlayer(name,runs,balls,fours,sixes){
+    runs = Number(runs);
+    balls = Number(balls);
+    fours = Number(fours);
+    sixes = Number(sixes);
+    for(let i=0;i<leaderboard.length;i++){
+        let playerObj = leaderboard[i];
+        if(playerObj.Name == name){
+            //will do some work here
+            playerObj.Runs+=runs;
+            playerObj.Innings+=1;
+            playerObj.Balls+=balls;
+            playerObj.Fours+=fours;
+            playerObj.Sixes+=sixes;
+            return;
+        }
+    }
+    // code coming here means we did not find our player inside leaderboard
+    let obj = {
+        Name:name,
+        Innings:1,
+        Runs:runs,
+        Balls:balls,
+        Fours:fours,
+        Sixes:sixes
+    }
+    leaderboard.push(obj);
+}
+
+// console.log("Line 80: ",leaderboard);
