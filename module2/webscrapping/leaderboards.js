@@ -44,7 +44,7 @@ function cb2(error,response,html){
                 processPlayer(name,runs,balls,fours,sixes);
             }
         }
-        // console.log("Line 46",leaderboard);
+         console.log("Line 47",leaderboard);
     }
 }
 
