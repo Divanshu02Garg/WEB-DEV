@@ -1,0 +1,75 @@
+nav{
+    display: flex;
+    justify-content: space-around;
+}
+ul{
+    
+    display: flex;
+    justify-content: space-between;
+    list-style-type:none;
+    font-size: x-large;
+}
+li:hover{
+    cursor: pointer;
+    color:red
+}
+li{
+    padding: 2rem;
+    color: aliceblue;
+}
+.head{
+    display: flex;
+}
+.tradinglogo{
+        height: 5rem;
+    }
+.container{
+display: flex;
+justify-content:space-evenly;
+ 
+}
+
+.container>div{
+    text-align: center;
+    margin: 2rem;
+}
+
+.coin{
+    height: 20rem;
+    width: 20rem;
+}
+.app{
+    height: 20rem;
+    width: 20rem;
+}
+.bank{
+    height: 20rem;
+    width: 20rem;
+}
+.bp{
+    height: 20rem;
+    width: 20rem;
+}
+.container{
+    display : flex;
+    justify-content : space-evenly;
+}
+a{
+    color: aliceblue  ;
+      
+}
+h1,h2,p{
+color:white
+}
+a:hover{
+    cursor: pointer;
+    color: red;   
+
+}
+.charts{
+   
+
+    height: 60rem;
+    width: 60rem;
+
+}
