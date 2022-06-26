@@ -36,10 +36,10 @@ nav{
 
 }
 
-.container>div{
+ .container>div{
     text-align: center;
     margin: 2rem;
-}
+} 
 
 .container>div>p{
     font-size: x-large;

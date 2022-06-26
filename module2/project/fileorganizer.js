@@ -14,7 +14,7 @@ let extensions = {
 };
 
 if(folderExists){
-    //we will code
+   
     // console.log("path is valid!!!!!!");
     let files = fs.readdirSync(folderPath);
     for(let i=0;i<files.length;i++){
